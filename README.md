@@ -1,0 +1,5 @@
+# Visual-Inertial Odometry Using Homography Matrix
+
+**Abstract**
+
+The fusion of visual and inertial cues has become popular in computer vision and robotics due to the complementary nature of the two sensing modalities. In this study, we utilized a homography matrix to extract the visual representation from the images gathered from a monocular camera and the information from an inertial measurement unit (IMU). We proposed four machine learning methods including multi-layer perception (MLP), support vector regressor (SVR), random forest regressor (RFR), and gradient boosting regressor (GBR), to estimate the trajectory. By comparing the proposed models, we found that intermediate fusion performs better than early fusion, and in terms of speed, our proposed MLP network is faster than the state-of-the-art methods. Moreover, we did a thorough component analysis and the results demonstrated that the contribution of the homography matrix in pose estimation is promising and more than IMU data. Lastly, we concluded that the proposed method can be a fast yet robust method to implement in real-time unlike more complicated methods using CNN.
