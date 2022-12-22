@@ -29,7 +29,7 @@ The fusion of visual and inertial cues has become popular in computer vision and
   
   [^2]: http://www.cvlibs.net/datasets/kitti/eval_odometry.php
 
-## Data Pre-processing protocol:
+## Data Pre-processing protocol
 
 1.	Downloaded IMU data from unsynced folder at 100 Hz
 
