@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jan 30 12:22:42 2022
+
+@author: Meysam
+This file is developed to sample imu based on image timestamps. It aims to sync
+the imu with image data.
+"""
+
+import numpy as np
+import pandas as pd
+import os
+
+# In[] load the imu and frame timestamps
+
+folder_num = 9 # you should change this folder number variable
+seq_num = [4,5,6,7,8,9,10,0,2,1]
+seq_name = '/seq_' + f"{seq_num[folder_num]:02}" + '_'
+KITTI_dir = '/home/dulab/selective_feature_fusion/KITTI/'
+KITTI_sync_dir = '/home/dulab/selective_feature_fusion/KITTI_sync/'
+seq_list = os.listdir(KITTI_dir)
+seq_list.sort()
+seq_sync_list = sorted(os.listdir(KITTI_sync_dir))
+
+imu_path = os.path.join(KITTI_dir, seq_list[folder_num],
+                        'oxts',
+                        'imu.csv')
+frame_path = os.path.join(KITTI_sync_dir, seq_sync_list[folder_num+2],
+                          'image_02',
+                          'timestamps.csv')
+
+imu_timestamp = np.array(pd.read_csv(imu_path))
+frame_timestamp = np.array(pd.read_csv(frame_path))
+
+imu = imu_timestamp[:,2:]
+
+imu_timestamp = imu_timestamp[:,1]
+frame_timestamp = frame_timestamp[:-1,1]
+
+# In[] Sample imu data with size (10,6) and save it to the desired directory
+
+indices = np.searchsorted(imu_timestamp, frame_timestamp)
+path_to_save = '/home/dulab/KITTI_preprocessed/imu'
+
+for index, i in zip(indices, range(len(indices))):
+    imu_i = imu[index+1:index+11,:]
+    file = path_to_save + seq_name + f"{i:04}"
+    np.save(file, imu_i)
+    print(i)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
