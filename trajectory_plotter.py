@@ -52,13 +52,14 @@ def trajectory_plotter(y_pred, y_true):
             y_gt[i] = np.round(d, decimals=4)
             #print(b)
             
-        plt.figure(dpi=300)
         plt.scatter(x_predict, y_predict,  color='g', label='predict', s=1)
         plt.scatter(x_gt, y_gt,  color='r', label='GT', s=1)
         plt.legend()
         plt.xlabel("x (m)")
         plt.ylabel("y (m)")
-        plt.title('Trajectory' )
+        plt.title('Trajectory for SVR with Inertial Data Only')
+        # plt.title('Trajectory for SVR with Vision Data Only')
+        # plt.title('Trajectory for SVR')
         plt.show()
 
 
